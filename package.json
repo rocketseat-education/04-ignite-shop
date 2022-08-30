@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@stitches/react": "^1.2.8",
+    "keen-slider": "^6.7.0",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0"
