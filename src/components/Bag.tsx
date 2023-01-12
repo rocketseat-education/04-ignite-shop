@@ -1,7 +1,20 @@
-import React from "react";
+import Image from "next/image";
+import React, { HTMLAttributes } from "react";
+import bagIcon from "../assets/bag.svg";
 
-import { Container } from "../styles/components/bag";
+import { Container, Badge } from "../styles/components/bag";
 
-export function Bag() {
-  return <Container>INCON AQUI</Container>;
+interface BagProps extends HTMLAttributes<HTMLDivElement> {
+  hasBadge: false;
+  width?: number;
+  height?: number;
+}
+
+export function Bag({ hasBadge, width = 24, height = 24, ...props }: BagProps) {
+  return (
+    <Container {...props}>
+      {hasBadge && <Badge>5</Badge>}
+      <Image src={bagIcon} alt="bag" width={width} height={height} />
+    </Container>
+  );
 }

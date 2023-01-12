@@ -10,6 +10,7 @@ import { HomeContainer, Product } from "../styles/pages/home";
 
 import "keen-slider/keen-slider.min.css";
 import Stripe from "stripe";
+import { Bag } from "../components/Bag";
 
 interface HomeProps {
   products: {
@@ -46,8 +47,19 @@ export default function Home({ products }: HomeProps) {
                 <Image src={product.imageUrl} width={520} height={480} alt="" />
 
                 <footer>
-                  <strong>{product.name}</strong>
-                  <span>{product.price}</span>
+                  <div>
+                    <strong>{product.name}</strong>
+                    <span>{product.price}</span>
+                  </div>
+                  <Bag
+                    hasBadge={false}
+                    width={56}
+                    height={56}
+                    style={{
+                      background: "#00875F",
+                      color: "#ffff",
+                    }}
+                  />
                 </footer>
               </Product>
             </Link>
@@ -58,30 +70,29 @@ export default function Home({ products }: HomeProps) {
   );
 }
 
-/* export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const response = await stripe.products.list({
-    expand: ['data.default_price']
+    expand: ["data.default_price"],
   });
 
-
-  const products = response.data.map(product => {
+  const products = response.data.map((product) => {
     const price = product.default_price as Stripe.Price;
 
     return {
       id: product.id,
       name: product.name,
       imageUrl: product.images[0],
-      price: new Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL'
+      price: new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL",
       }).format(price.unit_amount / 100),
-    }
-  })
+    };
+  });
 
   return {
     props: {
-      products
+      products,
     },
-    revalidate: 60 * 60 * 2 // 2 hours,
-  }
-} */
+    revalidate: 60 * 60 * 2, // 2 hours,
+  };
+};
