@@ -4,9 +4,7 @@ const nextConfig = {
   swcMinify: true,
 
   images: {
-    domains: [
-      'files.stripe.com',
-    ],
+    domains: ["files.stripe.com", "31270.cdn.simplo7.net"],
   },
 
   experimental: {
@@ -15,6 +13,6 @@ const nextConfig = {
       allowFutureImage: true,
     },
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

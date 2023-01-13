@@ -1,4 +1,18 @@
 import { styled } from "..";
+import { BagDrawer } from "../../components/BagDrawer";
+
+BagDrawer.toString = () => ".bag-drawer";
+
+export const Box = styled("div", {
+  [`& ${BagDrawer}`]: {
+    display: "flex",
+    justifyContent: "center",
+    width: "480px !important",
+    background: "#202024 !important",
+    paddingLeft: "48px",
+    paddingRight: "48px",
+  },
+});
 
 export const Container = styled("div", {
   display: "flex",
@@ -15,6 +29,7 @@ export const Container = styled("div", {
 
   background: "#202024",
   borderRadius: "6px",
+  cursor: "pointer",
 });
 
 export const Badge = styled("span", {
