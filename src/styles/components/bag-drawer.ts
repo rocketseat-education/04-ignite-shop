@@ -7,11 +7,30 @@ export const BodyContainer = styled("div", {
   justifyContent: "space-around",
 });
 
-export const DrawerHeader = styled("header", {});
+export const DrawerHeader = styled("header", {
+  display: "flex",
+  justifyContent: "flex-end",
+  alignItems: "flex-end",
+  button: {
+    background: "none",
+    color: "$green500",
+    border: "none",
+    cursor: "pointer",
+
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: 700,
+    fontSize: "16px",
+    lineHeight: "160%",
+  },
+});
 
 export const DrawerContent = styled("div", {});
 
 export const DrawerFooter = styled("footer", {
+  display: "flex",
+  flexDirection: "column",
+  gap: "48px",
   button: {
     width: "100%",
     marginTop: "auto",
@@ -71,6 +90,7 @@ export const LeftInfo = styled("div", {
 export const RightInfo = styled("div", {
   display: "flex",
   flexDirection: "column",
+  alignItems: "flex-end",
   justifyContent: "flex-end",
 });
 
@@ -138,10 +158,9 @@ export const Item = styled("div", {
 
 export const ItemImageContainer = styled("div", {
   width: 102,
-  height: 92,
+  height: 102,
   background: "linear-gradient(180deg, #1ea483 0%, #7465d4 100%)",
   borderRadius: 8,
-  padding: "0.25rem",
 
   display: "flex",
   alignItems: "center",
