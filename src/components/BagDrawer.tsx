@@ -11,6 +11,9 @@ import {
   LineItem,
   Item,
   ItemImageContainer,
+  LeftInfo,
+  RightInfo,
+  FooterContainerInfo,
 } from "../styles/components/bag-drawer";
 
 interface BagDrawerProps {
@@ -18,39 +21,58 @@ interface BagDrawerProps {
   toggleDrawer: () => void;
 }
 
-const fake = [
-  {
-    is: 1,
-    name: "Camiseta Da hora",
-    price: "$20.00",
-  },
-  {
-    id: 2,
-    name: "Camiseta Massinha",
-    price: "$20.00",
-  },
-];
+interface CartDetailsType {
+  currency: string;
+  description: string;
+  formattedPrice: string;
+  formattedValue: string;
+  id: string;
+  name: string;
+  price: number;
+  price_data: Object;
+  product_data: {
+    defaultPriceId: string;
+    id: string;
+    name: string;
+    imageUrl: string;
+    price: unknown;
+    description: string;
+  };
+  quantity: number;
+  value: number;
+}
 
 const LineItems = () => {
+  const { removeItem, cartDetails } = useShoppingCart();
+
   return (
     <LineItem>
       <h2>Sacola de compras</h2>
-      {fake.map((item) => (
+      {Object.values(cartDetails).map((item: CartDetailsType) => (
         <Item key={item.id}>
           <ItemImageContainer>
             <Image
-              src={
-                "https://31270.cdn.simplo7.net/static/31270/sku/camisetas-camiseta-raglan-branca-com-manga-preta-de-poliester-para-sublimacao--p-1569938167978.jpg"
-              }
+              src={item.product_data.imageUrl}
               alt=""
               width={102}
               height={102}
             />
           </ItemImageContainer>
           <div>
-            <h4>{item.name}</h4>
-            <h3>{item.price}</h3>
-            <button onClick={() => alert("REMOVEU!")}>remover</button>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 8,
+              }}
+            >
+              <h4>{item.name}</h4>-<h4>{item.formattedPrice}</h4>
+            </div>
+            <h6>
+              Quantidade: {item.quantity} - {item.formattedValue}
+            </h6>
+            <button onClick={() => removeItem(item.id)}>remover</button>
           </div>
         </Item>
       ))}
@@ -59,9 +81,18 @@ const LineItems = () => {
 };
 
 export const BagDrawer = ({ isOpen, toggleDrawer }: BagDrawerProps) => {
-  const { cartDetails } = useShoppingCart();
-  console.log(cartDetails);
+  3;
+  const { cartCount, cartDetails } = useShoppingCart();
 
+  const cartTotalValue = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(
+    Object.values(cartDetails).reduce(
+      (acc, item: CartDetailsType) => acc + item.value / 100,
+      0
+    )
+  );
   return (
     <Drawer
       open={isOpen}
@@ -75,16 +106,16 @@ export const BagDrawer = ({ isOpen, toggleDrawer }: BagDrawerProps) => {
           <LineItems />
         </DrawerContent>
         <DrawerFooter>
-          <div>
-            <div>
-              <h6>quantidade</h6>
+          <FooterContainerInfo>
+            <LeftInfo>
+              <h6>Quantidade</h6>
               <h3>Valor Toral</h3>
-            </div>
-            <div>
-              <h6>3 itens</h6>
-              <h3>R$ 270</h3>
-            </div>
-          </div>
+            </LeftInfo>
+            <RightInfo>
+              <h6>{cartCount} itens</h6>
+              <h3>{cartTotalValue}</h3>
+            </RightInfo>
+          </FooterContainerInfo>
           <button /* disabled={isCreatingCheckoutSession} onClick={addTobag }*/>
             Finalizar Compra
           </button>

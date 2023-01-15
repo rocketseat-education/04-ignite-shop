@@ -13,6 +13,7 @@ export const DrawerContent = styled("div", {});
 
 export const DrawerFooter = styled("footer", {
   button: {
+    width: "100%",
     marginTop: "auto",
     backgroundColor: "$green500",
     border: 0,
@@ -32,6 +33,45 @@ export const DrawerFooter = styled("footer", {
       backgroundColor: "$green300",
     },
   },
+});
+
+export const FooterContainerInfo = styled("section", {
+  width: "100%",
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "space-between",
+
+  h6: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: 400,
+    fontSize: "16px",
+    lineHeight: "160%",
+
+    color: "#E1E1E6",
+  },
+
+  h3: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: 700,
+    fontSize: "18px",
+    lineHeight: "160%",
+
+    color: "#E1E1E6",
+  },
+});
+
+export const LeftInfo = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "flex-start",
+});
+
+export const RightInfo = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "flex-end",
 });
 
 export const LineItem = styled("div", {

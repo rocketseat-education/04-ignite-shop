@@ -13,7 +13,7 @@ globalStyles();
 function App({ Component, pageProps }: AppProps) {
   return (
     <CartProvider
-      shouldPersist={false}
+      shouldPersist
       cartMode="checkout-session"
       stripe={process.env.STRIPE_PUBLIC_KEY}
       currency="BRL"

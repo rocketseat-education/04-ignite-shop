@@ -28,9 +28,7 @@ export default function Product({ product }: ProductProps) {
   const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] =
     useState(false);
 
-  const { addItem, cartDetails } = useShoppingCart();
-
-  console.log("cartDetails", cartDetails);
+  const { addItem } = useShoppingCart();
 
   /* async function handleBuyButton() {
     try {
@@ -57,6 +55,7 @@ export default function Product({ product }: ProductProps) {
       description: product.description,
       price: product.price.unit_amount,
       currency: product.price.currency,
+      product_data: product,
     });
   };
 
